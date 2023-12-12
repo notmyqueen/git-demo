@@ -15,4 +15,5 @@ public class Aspect2 {
     public void aim() {
         System.out.println("开炮前的瞄准");
     }
+
 }
