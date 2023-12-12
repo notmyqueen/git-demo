@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--Spring提供的实例化方式第二种：通过简单工厂模式。你需要在Spring配置文件中告诉Spring框架，调用哪个类的哪个方法获取Bean-->
+    <!--factory-method属性指定的是工厂类当中的静态方法。也就是告诉Spring框架，调用这个方法可以获取Bean。-->
+    <bean id="sfBean" class="com.example.spring6.bean.StarFactory" factory-method="get"/>
+
+    <!--Spring提供的实例化方法，第三种：通过工厂方法模式。通过factory-bean属性+factory-method属性来共同完成。-->
+    <!--相当于告诉Spring框架，调用哪个对象的哪个方法来获取Bean（这里就是调用DaggerFactory的get方法来获取bean）-->
+    <bean id="daggerFactory" class="com.example.spring6.bean.DaggerFactory"/>
+    <bean id="dagger" factory-bean="daggerFactory" factory-method="get"/>
+
+    <!--Spring提供的实例化方法，第四种：通过FactoryBean接口来实现。-->
+    <!--由于你编写的这个工厂类实现了FactoryBean接口，所以这个类是一个特殊类，不需要你再手动指定：factory-bean, factory-method-->
+    <!--通过一个特殊的Bean：工厂Bean。来返回一个普通的Bean Tank对象-->
+    <bean id="tank" class="com.example.spring6.bean.TankFactory"/>
+
+</beans>

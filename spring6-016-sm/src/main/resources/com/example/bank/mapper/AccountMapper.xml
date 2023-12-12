@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--下面这行mapper不能随便写-->
+<mapper namespace="com.example.bank.mapper.AccountMapper">
+    <!--这个id也不能随便写-->
+    <insert id="insert">
+        insert into spring_bank values(#{actno}, #{balance})
+    </insert>
+
+    <delete id="deleteByActno">
+        delete from spring_bank where actno = #{actno}
+    </delete>
+
+    <update id="update">
+        update spring_bank set balance = #{balance} where actno = #{actno}
+    </update>
+
+    <!--这个resultType本来是写com.example.bank.pojo.Account，但是有别名-->
+    <select id="selectByActno" resultType="com.example.bank.pojo.Account">
+        select * from spring_bank where actno = #{actno}
+    </select>
+
+    <select id="selectAll" resultType="Account">
+        select * from spring_bank
+    </select>
+</mapper>

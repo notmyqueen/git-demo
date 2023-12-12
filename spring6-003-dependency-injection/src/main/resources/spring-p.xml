@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--常规注入dog的属性-->
+    <bean id="dogBean" class="org.example.spring6.bean__JianDanLeiXing.Dog">
+        <property name="name" value="旺财"/>
+        <property name="age" value="10"/>
+        <property name="birth" ref="birthBean"/>
+    </bean>
+
+    <!--这里获取的当前系统时间，调用无参构造方法-->
+    <bean id="birthBean" class="java.util.Date"/>
+
+    <!--p命名空间的注入-->
+    <bean id="dogBeanP" class="org.example.spring6.bean__JianDanLeiXing.Dog" p:name="小花" p:age="3" p:birth-ref="birthBean"/>
+
+</beans>
+
+

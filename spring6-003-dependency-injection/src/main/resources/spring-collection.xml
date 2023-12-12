@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="userBean" class="org.example.spring6.bean__JianDanLeiXing.User">
+        <property name="password">
+            <value><![CDATA[2 < 3]]></value>
+        </property>
+    </bean>
+
+    <bean id="studentBean" class="org.example.spring6.bean__JianDanLeiXing.Student">
+        <!--注入空字符串-->
+        <property name="name">
+            <value></value>
+        </property>
+        <property name="age" value="20"/>
+    </bean>
+
+    <!--注入list和set-->
+    <bean id="personBean" class="org.example.spring6.bean__JianDanLeiXing.Person">
+        <property name="properties">
+            <!--Properties注入-->
+            <props>
+                <prop key="driver">com.mysql.cj.jdbc.Driver</prop>
+                <prop key="url">jdbc:mysql://localhost:3306/spring6</prop>
+                <prop key="username">root</prop>
+                <prop key="password">123456</prop>
+            </props>
+        </property>
+
+        <property name="phoneNumbers">
+            <!--Map注入-->
+            <map>
+                <!--非简单类型-->
+                <!--<entry key-ref="" value-ref=""/>-->
+                <!--简单类型-->
+                <entry key="1" value="110"/>
+                <entry key="2" value="10086"/>
+            </map>
+        </property>
+        <property name="names">
+            <!--list集合有序可重复-->
+            <list>
+                <value>张三</value>
+                <value>李四</value>
+            </list>
+
+        </property>
+        <property name="addresses">
+            <!--set集合无序不可重复-->
+            <set>
+                <value>北京</value>
+                <value>上海</value>
+            </set>
+        </property>
+    </bean>
+
+    <!--用构造方法对Zhangsan注入属性-->
+    <bean id="zsBean" class="org.example.spring6.bean__JianDanLeiXing.Zhangsan">
+        <!--简单类型-->
+        <constructor-arg index="0">
+            <array>
+                <value>旅游</value>
+                <value>读书</value>
+                <value>音乐</value>
+            </array>
+        </constructor-arg>
+        <!--非简单类型-->
+        <constructor-arg index="1">
+            <array>
+                <ref bean="stu1"/>
+                <ref bean="stu2"/>
+            </array>
+        </constructor-arg>
+    </bean>
+
+    <bean id="stu1" class="org.example.spring6.bean__JianDanLeiXing.Student">
+        <property name="name" value="学生1"/>
+    </bean>
+    <bean id="stu2" class="org.example.spring6.bean__JianDanLeiXing.Student">
+        <property name="name" value="学生2"/>
+    </bean>
+
+</beans>

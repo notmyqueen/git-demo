@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--&lt;!&ndash;根据名字进行自动装配&ndash;&gt;-->
+    <!--<bean id="orderServiceBean" class="org.example.spring6.test.service.OrderService" autowire="byName"/>-->
+    <!--&lt;!&ndash;id一般也叫做bean的名称&ndash;&gt;-->
+    <!--&lt;!&ndash;根据名字进行自动装配的时候，被注入的对象的bean的id不能随便写，怎么写？set方法的名字去掉set，剩下单词首字母小写&ndash;&gt;-->
+    <!--<bean id="orderdao" class="org.example.spring6.test.dao.OrderDao"/>-->
+
+    <!--<bean id="userServiceBean" class="org.example.spring6.test.service.UserService" autowire="byName"/>-->
+    <!--<bean id="userdao" class="org.example.spring6.test.dao.UserDao"/>-->
+
+    <!--根据类型进行自动装配-->
+    <bean id="orderServiceBean" class="org.example.spring6.test.service.OrderService" autowire="byType"/>
+    <!--这个类型的实例只能有一个。但是不需要id-->
+    <bean class="org.example.spring6.test.dao.OrderDao"/>
+
+    <bean id="userServiceBean" class="org.example.spring6.test.service.UserService" autowire="byType"/>
+    <bean id="userDao" class="org.example.spring6.test.dao.UserDao"/>
+</beans>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev">
+
+    <insert id="insertCar">
+        insert into t_car(id, car_num, brand, guide_price, produce_time, car_type) values(null, '1003', '丰田卡罗拉', 30.0, '2000-10-11', '燃油车')
+    </insert>
+
+    <insert id="insertCar2">
+        insert into t_car(id, car_num, brand, guide_price, produce_time, car_type) values(null, #{k1}, #{k2}, #{k3}, #{k4}, #{k5})
+    </insert>
+
+    <insert id="insertCar3">
+        insert into t_car(id, car_num, brand, guide_price, produce_time, car_type) values(null, #{carNum}, #{brand}, #{guidePrice}, #{produceTime}, #{carType})
+    </insert>
+
+    <delete id="deleteById">
+        delete from t_car where id=#{fdafdafdsa}
+    </delete>
+
+    <update id="updateById">
+        update t_car set car_num=#{carNum}, brand=#{brand}, guide_price=#{guidePrice}, produce_time=#{produceTime}, car_type=#{carType} where id=#{id}
+    </update>
+
+    <select id="selectById" resultType="com.example.mybatis.pojo.Car">
+        select * from t_car where id=#{id}
+    </select>
+
+</mapper>

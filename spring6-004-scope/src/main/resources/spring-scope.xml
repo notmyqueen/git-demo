@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <!--每次初始化的时候，该bean的对象都是同一个-->
+    <bean id="sb" class="org.example.bean.SpringBean" scope="singleton"/>
+
+    <!--每次getBean()的时候，该bean的对象都不同-->
+    <bean id="sb" class="org.example.bean.SpringBean" scope="prototype"/>
+</beans>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!--set注入-->
+    <bean id="vipBean" class="org.example.spring6.dao.VipDao"/>
+    <bean id="vipServiceBean" class="org.example.spring6.service.VipService">
+        <!--想让Spring调用对应的set方法，需要配置property标签-->
+        <!--name属性怎么指定值：就是set方法的方法名，但是要去掉set，然后把剩下的单词首字母变小写-->
+        <property name="vip" ref="vipBean"/>
+    </bean>
+
+    <!--构造注入-->
+    <!--这是两个待注入的bean对象-->
+    <bean id="userDaoBean" class="org.example.spring6.dao.UserDao"/>
+    <bean id="vipDaoBean" class="org.example.spring6.dao.VipDao"/>
+
+    <!--这是业务bean对象，要注入上面两个bean-->
+    <bean id="customerServiceBean" class="org.example.spring6.service.CustomerService">
+        <!--
+            index属性指定CustomerService的构造方法的参数的下标
+            ref属性用来指定注入的bean的id
+        -->
+        <!--指定构造方法的第一个参数，下标识0-->
+        <constructor-arg index="0" ref="userDaoBean"/>
+        <!--指定构造方法的第二个参数，下标识1-->
+        <constructor-arg index="1" ref="vipDaoBean"/>
+    </bean>
+
+    <bean id="customerServiceBean2" class="org.example.spring6.service.CustomerService">
+        <!--根据构造方法参数的名字进行注入。注意，用的是名字（ud, vip），不是类型名-->
+        <constructor-arg name="ud" ref="userDaoBean"/>
+        <constructor-arg name="vip" ref="vipDaoBean"/>
+    </bean>
+
+    <bean id="customerServiceBean3" class="org.example.spring6.service.CustomerService">
+        <!--不指定下标，也不指定参数名，让spring自己做类型匹配-->
+        <constructor-arg ref="userDaoBean"/>
+        <constructor-arg ref="vipDaoBean"/>
+    </bean>
+
+    <!--注入简单类型-->
+    <bean id="userBean" class="org.example.spring6.bean__JianDanLeiXing.User">
+        <!--重点：如果是简单类型复制，就不能用ref了。需要用value-->
+        <property name="username" value="张三"/>
+        <property name="password" value="123"/>
+        <property name="age" value="20"/>
+    </bean>
+
+    <!--
+        使用级联属性赋值需要注意两点：
+            1. 配置的顺序不能颠倒，必须如下顺序。
+            2. Student类里的clazz属性必须提供getter方法。
+    -->
+    <bean id="stuBean" class="org.example.spring6.bean__JianDanLeiXing.Student">
+        <property name="name" value="张三"/>
+        <property name="clazz" ref="clazzBean"/>
+        <!--级联属性赋值-->
+        <!--在Student类里，不止要setClazz，还需要getClazz。因为先要get这个Student里的clazz对象，再给clazz的name属性赋值-->
+        <property name="clazz.name" value="初一三班"/>
+    </bean>
+    <bean id="clazzBean" class="org.example.spring6.bean__JianDanLeiXing.Clazz"/>
+        <!--本来name属性在clazzBean下注入赋值，但是用级联属性赋值的话就在上面stuBean里注入了-->
+
+
+
+    <bean id="zhangsanBean" class="org.example.spring6.bean__JianDanLeiXing.Zhangsan">
+        <!--数组里的元素为简单类型-->
+        <property name="hobbies">
+            <array>
+                <value>足球</value>
+                <value>篮球</value>
+                <value>保龄球</value>
+            </array>
+        </property>
+        <!--数组里的元素为非简单类型-->
+        <property name="students">
+            <array>
+                <ref bean="stu1"/>
+                <ref bean="stu2"/>
+            </array>
+        </property>
+    </bean>
+
+    <!--Zhangsan的学生bean另外写，供zhangsanBean来ref-->
+    <!--写在zhangsanBean下面也可以，顺序不重要-->
+    <bean id="stu1" class="org.example.spring6.bean__JianDanLeiXing.Student">
+        <property name="name" value="学生1"/>
+    </bean>
+    <bean id="stu2" class="org.example.spring6.bean__JianDanLeiXing.Student">
+        <property name="name" value="学生2"/>
+    </bean>
+
+</beans>

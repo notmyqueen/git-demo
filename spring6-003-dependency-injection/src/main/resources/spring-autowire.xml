@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="orderServiceBean" class="org.example.spring6.service.OrderService" autowire="byName"/>
+    <bean id="orderDao" class="org.example.spring6.dao.OrderDao"/>
+
+    <bean id="vipServiceBean" class="org.example.spring6.service.VipService" autowire="byType"/>
+    <bean class="org.example.spring6.dao.VipDao"/>
+    <bean class="org.example.spring6.dao.UserDao"/>
+
+    <bean id="customerDaoBean" class="org.example.spring6.dao.CustomerDao"/>
+
+    <!--<bean id="propBean"-->
+</beans>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="development">
+    <insert id="insert">
+        insert into t_player(name, team) VALUES(#{name}, #{team})
+    </insert>
+
+    <delete id="deleteById">
+        delete from t_player where id=#{fdafdafdsa}
+    </delete>
+
+    <update id="update">
+        update t_player set name = #{name}, team = #{team} where id = #{id}
+    </update>
+    <select id="selectById2" resultType="com.example.mybatis2.pojo.Player">
+        select * from t_player where id=#{id}
+    </select>
+
+    <select id="selectAll" resultType="com.example.mybatis2.pojo.Player">
+        select * from t_player
+    </select>
+</mapper>
