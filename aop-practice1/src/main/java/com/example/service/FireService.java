@@ -11,5 +11,6 @@ public class FireService {
         System.out.println("Git test!");
         System.out.println("Git test!");
         System.out.println("Git test 2");
+        System.out.println("Git test 2");
     }
 }
