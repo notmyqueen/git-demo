@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 public class FireService {
     public void fire() {  //目标方法
         System.out.println("启动开火服务。。。");
-
+        System.out.println("git test");
     }
 }
