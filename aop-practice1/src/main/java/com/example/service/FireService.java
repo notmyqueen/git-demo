@@ -9,5 +9,6 @@ public class FireService {
         System.out.println("启动开火服务。。。");
         System.out.println("git test");
         System.out.println("git test");
+        System.out.println("master test");
     }
 }
